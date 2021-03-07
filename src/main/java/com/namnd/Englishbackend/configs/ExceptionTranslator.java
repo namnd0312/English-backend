@@ -10,6 +10,7 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
+import static com.namnd.Englishbackend.enums.MessageEnum.ACCESS_DENIED;
 import static com.namnd.Englishbackend.enums.MessageEnum.PARAMETER_IN_VALID;
 
 
@@ -80,11 +82,9 @@ public class ExceptionTranslator extends RequestBodyAdviceAdapter {
         return new ResponseEntity<>(Response.error(PARAMETER_IN_VALID, message), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(IOException.class)
-    public ResponseEntity<?> inputException(IOException ex) {
-
-        String message = ex.getMessage();
-        return new ResponseEntity<>(Response.error(PARAMETER_IN_VALID, message), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<?> inputException(AccessDeniedException ex) {
+        return new ResponseEntity<>(Response.error(ACCESS_DENIED), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(LogicException.class)

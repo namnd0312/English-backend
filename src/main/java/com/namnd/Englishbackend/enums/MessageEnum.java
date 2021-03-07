@@ -19,6 +19,7 @@ public enum MessageEnum {
     UN_AUTHORIZE("02", "UN AUTHORIZER"),
     USER_TOKEN_INVALID("02", "USER_TOKEN_INVALID"),
     USER_MISSING_ROLE("02", "USER_MISSING_ROLE"),
+    ACCESS_DENIED("02", "Access is denied"),
 
     //    FOR CARD
     CARD_ID_REQUIRED("301", "CARD ID REQUIRED"),
