@@ -1,5 +1,7 @@
 package com.namnd.Englishbackend.securities;
 
+import com.namnd.Englishbackend.configs.LogicException;
+import javafx.fxml.LoadException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -10,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static com.namnd.Englishbackend.enums.MessageEnum.UN_AUTHORIZE;
 
 /**
  * @author nam.nd
@@ -23,8 +27,10 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-            throws IOException, ServletException {
-        logger.error("Unauthorized error: {}", authException.getMessage());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+            throws IOException {
+
+//        throw new IOException("UN AUTHORISE", );
+//        logger.error("Unauthorized error: {}", authException.getMessage());
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unautdgsgsgseghorized");
     }
 }
