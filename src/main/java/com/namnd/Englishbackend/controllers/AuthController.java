@@ -65,7 +65,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-       try{
+//       try{
            Authentication authentication = authenticationManager.authenticate(
                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
@@ -85,9 +85,9 @@ public class AuthController {
                    roles);
 
            return new ResponseEntity<>(Response.ok(jwtResponse), HttpStatus.OK);
-       }catch (Exception ex){
-           return handleError(ex);
-       }
+//       }catch (Exception ex){
+//           return handleError(ex);
+//       }
     }
 
 
